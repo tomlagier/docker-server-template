@@ -5,6 +5,7 @@ DIRECTORY=$(readlink -f /www/$PROJECT)
 if [ ! -d "$DIRECTORY" ]; then
   git clone /www/$PROJECT.git /www/$PROJECT
   cd /www/$PROJECT
+  GIT_DIR=/www/$PROJECT/.git
   git checkout build
 else
   cd /www/$PROJECT
