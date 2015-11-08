@@ -1,0 +1,8 @@
+PROJECT=$1
+
+mkdir /www/$PROJECT.git
+cd /www/$PROJECT.git/
+git init --bare 
+cp /shared/post-receive /www/$PROJECT.git/hooks/
+chmod +x /www/$PROJECT.git/hooks/post-receive
+chown -R git:git /www/$PROJECT.git/

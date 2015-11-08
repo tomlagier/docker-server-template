@@ -1,0 +1,17 @@
+REPODIR=${PWD%.*}
+PROJECT=${REPODIR##*/}
+
+DIRECTORY=$(readlink -f /www/$PROJECT)
+if [ ! -d "$DIRECTORY" ]; then
+  git clone /www/$PROJECT.git /www/$PROJECT
+  cd /www/$PROJECT
+  git checkout build
+else
+  cd /www/$PROJECT
+  GIT_DIR=/www/$PROJECT/.git
+  git pull origin build
+fi
+
+cd build
+./build.sh
+rm -rf /www/$PROJECT
